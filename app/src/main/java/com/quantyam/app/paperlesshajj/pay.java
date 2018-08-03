@@ -41,7 +41,12 @@ public class pay extends AppCompatActivity {
     // QREader
    ProgressDialog dialog;
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getBaseContext(), mui.class);
 
+        startActivity(intent);
+    }
     double req_value = 0.0;
     Button stateBtn, startQR;
     private SurfaceView mySurfaceView;

@@ -28,6 +28,13 @@ public class mybalance extends AppCompatActivity {
     String qrcode;
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getBaseContext(), mui.class);
+
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mybalance);
@@ -126,36 +133,10 @@ public class mybalance extends AppCompatActivity {
                     cash.setText(mny);
 
 
-                    for (int i = 0; i < d; i++) {
-
-
-                    }
-
-                    runOnUiThread(new Runnable() {
-
-                        public void run() {
-
-                            for (int i = 0; i < d; i++) {
-                                try {
-
-
-                                    Thread.sleep(2);
-                                    cash.setText(i + "");
-                                    pr(i + "");
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    });
 
 
 
-                   /* dp( CampainName ,        name ,        nationalityD ,        Residence ,        Money ,
-                            MedicalRecord ,        dob ,        company,        Leader ,        SpaekingLanguage ,
-                            Nationality ,        BloodType ,        PhoneNumber ,        RelativePhoneNo ,
-                            Email ,        Transportation  );
-*/
+
 
 
                 } catch (Exception e) {

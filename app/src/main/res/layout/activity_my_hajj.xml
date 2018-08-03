@@ -8,16 +8,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="472dp"
+        android:layout_height="match_parent"
 
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="122dp">
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
 
             android:layout_height="match_parent"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
@@ -40,8 +40,8 @@
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         app:srcCompat="@drawable/done" />
@@ -70,11 +70,11 @@
 
                     <ImageView
 
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/notdone" />
+                        app:srcCompat="@drawable/done" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -99,8 +99,8 @@ No specific prayers are assigned for the Waquf, so simply pray to Allah sincerel
 
                     <ImageView
 
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         app:srcCompat="@drawable/notdone" />
@@ -128,8 +128,8 @@ No specific prayers are assigned for the Waquf, so simply pray to Allah sincerel
 
                     <ImageView
 
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         app:srcCompat="@drawable/notdone" />
@@ -156,8 +156,8 @@ No specific prayers are assigned for the Waquf, so simply pray to Allah sincerel
 
                     <ImageView
 
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         app:srcCompat="@drawable/notdone" />
@@ -184,8 +184,8 @@ This ceremony can be extremely crowded, tense, and emotional. Trampling deaths, 
 
                         <ImageView
 
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
                             android:layout_weight="0"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/notdone" />
@@ -213,8 +213,8 @@ Animal sacrifice can be done at any point on the 10th, 11th, or 12th day of Dhul
 
                             <ImageView
 
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
+                                android:layout_width="65dp"
+                                android:layout_height="65dp"
                                 android:layout_weight="0"
                                 android:adjustViewBounds="true"
                                 app:srcCompat="@drawable/notdone" />
