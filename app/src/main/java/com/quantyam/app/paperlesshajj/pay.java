@@ -9,11 +9,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,40 +40,53 @@ public class pay extends AppCompatActivity {
 
     // QREader
     ProgressDialog dialog;
-    int userid=1;
-    double req_value=0.0;
-    Button stateBtn,startQR;
+
+
+    double req_value = 0.0;
+    Button stateBtn, startQR;
     private SurfaceView mySurfaceView;
     private QREader qrEader;
-String qrcode="";
+    String qrcode = "";
+    String id;
     boolean hasCameraPermission = false;
-EditText pass,requiredAMount;
+    EditText pass, requiredAMount;
+TextView entrpin;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay);
         hasCameraPermission = RuntimePermissionUtil.checkPermissonGranted(this, cameraPerm);
 
-     //   text = findViewById(R.id.code_info);
-        pass=findViewById(R.id.password);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+        Window window = this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor("#94090D"));
+
+        id = getIntent().getStringExtra("userid");
+        //   text = findViewById(R.id.code_info);
+        pass = findViewById(R.id.password);
         mySurfaceView = findViewById(R.id.camera_view);
         pass.setVisibility(View.GONE);
 
-        requiredAMount=findViewById(R.id.rm);
+        requiredAMount = findViewById(R.id.rm);
+        entrpin=findViewById(R.id.entrpin);
+        entrpin.setVisibility(View.GONE);
 
-
-            startQR = findViewById(R.id.sqr);
+       /* startQR = findViewById(R.id.sqr);
         // change of reader state in dynamic
         startQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               new chkcre(req_value ).execute();
+                new chkcre(req_value).execute();
 
 
             }
         });
-
+*/
 
         stateBtn = findViewById(R.id.submit);
 
@@ -80,39 +96,15 @@ EditText pass,requiredAMount;
             @Override
             public void onClick(View v) {
 
-                new chkcre(req_value ).execute();
+                if(pass.getText().toString().equals("")){
+                    ShowMes("Please enter Pin Code", pay.this);
+                }else {
 
-
-            }
-        });
-/*
-
-   stateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (qrEader.isCameraRunning()) {
-                    stateBtn.setText("Start QREader");
-                    qrEader.stop();
-                } else {
-                    stateBtn.setText("Stop QREader");
-                    qrEader.start();
+                    new chkcre(req_value).execute();
                 }
+
             }
         });
-        stateBtn.setVisibility(View.VISIBLE);
-
-        Button restartbtn = findViewById(R.id.btn_restart_activity);
-        restartbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                restartActivity();
-            }
-        });
-*/
-        // Setup SurfaceView
-        // -----------------
-
-
 
 
         if (hasCameraPermission) {
@@ -130,25 +122,24 @@ EditText pass,requiredAMount;
 
 
     void setupQREader() {
-        // Init QREader
-        // ------------
+
         qrEader = new QREader.Builder(this, mySurfaceView, new QRDataListener() {
             @Override
             public void onDetected(final String data) {
 
 
-
                 Log.d("output", "Value : " + data);
-                qrcode=data;
+                qrcode = data;
                 pass.post(new Runnable() {
                     @Override
                     public void run() {
                         qrEader.stop();
-                        req_value = Double.parseDouble((requiredAMount.getText().toString()));
-                        pass.setVisibility(View.VISIBLE);
-                        stateBtn.setVisibility(View.VISIBLE);
 
-                      //  text.setText(data);
+                        new chkhajj(req_value).execute();
+
+
+
+                        //  text.setText(data);
                     }
                 });
             }
@@ -191,7 +182,7 @@ EditText pass,requiredAMount;
             RuntimePermissionUtil.onRequestPermissionsResult(grantResults, new RPResultListener() {
                 @Override
                 public void onPermissionGranted() {
-                    if ( RuntimePermissionUtil.checkPermissonGranted(com.quantyam.app.paperlesshajj.pay.this, cameraPerm)) {
+                    if (RuntimePermissionUtil.checkPermissonGranted(com.quantyam.app.paperlesshajj.pay.this, cameraPerm)) {
                         restartActivity();
                     }
                 }
@@ -205,19 +196,18 @@ EditText pass,requiredAMount;
     }
 
 
-    class chkcre extends AsyncTask<Double, Double, String> {
+    class chkhajj extends AsyncTask<Double, Double, String> {
 
-        double moneyneeded=0;
-        chkcre(double x) {
+        double moneyneeded = 0;
 
-            moneyneeded=x ;
+        chkhajj(double x) {
+
+            moneyneeded = x;
         }
 
 
-
-
         @Override
-        protected void onPreExecute( ) {
+        protected void onPreExecute() {
 
             dialog = ProgressDialog.show(com.quantyam.app.paperlesshajj.pay.this, null, null, false, false);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -231,6 +221,7 @@ EditText pass,requiredAMount;
 
         @Override
         protected String doInBackground(Double... integers) {
+            String result="invalid";
 
             try {
 
@@ -245,10 +236,9 @@ EditText pass,requiredAMount;
                 String link;
 
                 BufferedReader bufferedReader;
-                String result;
 
 
-                link = "http://quantyam.com/hajj/chkpay.php?code="+qrcode+"&pass="+pass.getText();
+                link = "http://quantyam.com/hajj/getinfo.php?code=" + qrcode   ;
 
                 pr(link);
                 URL url = new URL(link);
@@ -262,79 +252,167 @@ EditText pass,requiredAMount;
                 bufferedReader = new BufferedReader(is);
                 result = bufferedReader.readLine();
 
-                String jsonStr = result;
-                Log.d("output","JSON IS ===================="+jsonStr+"======");
-
-                if (!jsonStr.equals("invalid")) {
-                    try {
 
 
-                        JSONObject jsonObj = new JSONObject(jsonStr);
 
-
-                        String cash = jsonObj.getString("Money");
-                        String CampainName = jsonObj.getString("company");
-                        String hajjid = jsonObj.getString("ID");
-
-                        int currentver = Integer.parseInt(cash);
-
-                        if (currentver > moneyneeded) {
-
-                Log.d("output","good cash");
-                         new dopay(moneyneeded,CampainName,hajjid).execute();
-                        } else {
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Log.d("output","NO CASH!");
-                                    ShowMes("No balance", com.quantyam.app.paperlesshajj.pay.this);
-                                    dialog.dismiss();
-                                //error     new helper().sdok(getString(R.string.plzupdate), Login.this);
-
-
-                                }
-                            });
-
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }else{
-                    Log.d("output","BAD INFO");
-                }
 
             } catch (Exception eo) {
                 eo.printStackTrace();
             }
-            return null;
+            return result;
         }
 
 
-        protected void onPostExecute(Integer result) {
+        protected void onPostExecute(String result) {
+            String jsonStr = result;
+dialog.dismiss();
+            Log.d("output", "JSON IS ====================" + jsonStr + "======");
+
+            if (!jsonStr.equals("invalid")) {
+                req_value = Double.parseDouble((requiredAMount.getText().toString()));
+                pass.setVisibility(View.VISIBLE);
+                stateBtn.setVisibility(View.VISIBLE);
+                entrpin.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+
+            } else {
+                dialog.dismiss();
+                ShowMes("Hajj doesn't exist",pay.this);
+                onRestart();
+            }
+        }
+    }
+
+    class chkcre extends AsyncTask<Double, Double, String> {
+
+        double moneyneeded = 0;
+
+        chkcre(double x) {
+
+            moneyneeded = x;
+        }
 
 
+        @Override
+        protected void onPreExecute() {
+
+            dialog = ProgressDialog.show(com.quantyam.app.paperlesshajj.pay.this, null, null, false, false);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(R.layout.progbar);
+        }
+
+        public void pr(String s) {
+
+            System.out.println(s);
+        }
+
+        @Override
+        protected String doInBackground(Double... integers) {
+            String result="invalid";
+
+            try {
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+
+
+                    }
+                });
+
+
+                String link;
+
+                BufferedReader bufferedReader;
+
+
+                link = "http://quantyam.com/hajj/chkpay.php?code=" + qrcode + "&pass=" + pass.getText();
+
+                pr(link);
+                URL url = new URL(link);
+
+
+                HttpURLConnection.setFollowRedirects(false);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setConnectTimeout(5000);
+                InputStreamReader is = new InputStreamReader(con.getInputStream());
+
+                bufferedReader = new BufferedReader(is);
+                result = bufferedReader.readLine();
+
+
+
+
+
+            } catch (Exception eo) {
+                eo.printStackTrace();
+            }
+            return result;
+        }
+
+
+        protected void onPostExecute(String result) {
+            String jsonStr = result;
+
+            Log.d("output", "JSON IS ====================" + jsonStr + "======");
+
+            if (!jsonStr.equals("invalid")) {
+                try {
+
+
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+
+
+                    String cash = jsonObj.getString("Money");
+                    String CampainName = jsonObj.getString("company");
+                    String hajjid = jsonObj.getString("ID");
+
+                    int currentver = Integer.parseInt(cash);
+
+                    if (currentver > moneyneeded) {
+
+                        Log.d("output", "good cash");
+                        new dopay(moneyneeded, CampainName, hajjid).execute();
+                    } else {
+
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Log.d("output", "NO CASH!");
+                                ShowMes("No balance", com.quantyam.app.paperlesshajj.pay.this);
+                                dialog.dismiss();
+                                //error     new helper().sdok(getString(R.string.plzupdate), Login.this);
+
+
+                            }
+                        });
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                dialog.dismiss();
+                ShowMes("Payment Declined, Pin code is invalid",pay.this);
+            }
         }
     }
 
 
     class dopay extends AsyncTask<Double, Double, String> {
 
-        double moneyneeded=0;
-        String company="",hajj_id="";
+        double moneyneeded = 0;
+        String company = "", hajj_id = "";
 
-        dopay(double x,String s,String d) {
-company=s;
-            hajj_id=d;
-            moneyneeded=x ;
+        dopay(double x, String s, String d) {
+            company = s;
+            hajj_id = d;
+            moneyneeded = x;
         }
 
 
-
-
         @Override
-        protected void onPreExecute( ) {
+        protected void onPreExecute() {
 
 
         }
@@ -363,7 +441,7 @@ company=s;
                 String result;
 
 
-                link = "http://quantyam.com/hajj/pay.php?code="+qrcode+"&amount="+moneyneeded+"&company="+company+"&userid="+userid+"&hajjid="+hajj_id;
+                link = "http://quantyam.com/hajj/pay.php?code=" + qrcode + "&amount=" + moneyneeded + "&company=" + company + "&userid=" + id + "&hajjid=" + hajj_id;
 
                 pr(link);
                 URL url = new URL(link);
@@ -378,7 +456,7 @@ company=s;
                 result = bufferedReader.readLine();
 
                 String jsonStr = result;
-                Log.d("output","JSON IS ===================="+jsonStr+"======");
+                Log.d("output", "JSON IS ====================" + jsonStr + "======");
 
                 if (!jsonStr.equals("Success")) {
                     runOnUiThread(new Runnable() {
@@ -390,7 +468,7 @@ company=s;
                     });
 
 
-                }else{
+                } else {
                     runOnUiThread(new Runnable() {
                         public void run() {
 
@@ -400,7 +478,7 @@ company=s;
                     });
 
 
-                    Log.d("output","Could not pay");
+                    Log.d("output", "Could not pay");
                 }
 
             } catch (Exception eo) {
@@ -427,7 +505,7 @@ company=s;
         alertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
- finish();
+                finish();
 
             }
 

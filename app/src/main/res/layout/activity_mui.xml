@@ -9,27 +9,227 @@
     tools:context=".mui">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/buy"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="buy" />
+            android:orientation="vertical">
 
-        <Cardview
-            android:id="@+id/buy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="buy" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/myhajj"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
 
-        <Button
-            android:id="@+id/medical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="medical" />
-    </LinearLayout>
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:elevation="10dp"
+                android:visibility="visible"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#A9CF54"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+
+                        android:paddingVertical="3dp"
+                        android:text="My Hajj"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+
+                    <ImageView
+
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/hajji" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:columnCount="2"
+                android:numColumns="auto_fit"
+                android:orientation="horizontal"
+                android:verticalSpacing="10dp">
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/buy"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+
+                    android:elevation="10dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#E7D14B"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+
+                            android:paddingVertical="3dp"
+                            android:text="Pay"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/pay" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/medical"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+
+                    android:elevation="10dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#F4DD4F"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+
+                            android:paddingVertical="3dp"
+                            android:text="Medical"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/medical" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/voln"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+
+                    android:elevation="10dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00BA8A"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+
+                            android:paddingVertical="3dp"
+                            android:text="Volanteer"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/vol" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/security"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+
+                    android:elevation="10dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00DBA2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+
+                            android:paddingVertical="3dp"
+                            android:text="Security"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <ImageView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/pols" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </GridLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

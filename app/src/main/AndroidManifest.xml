@@ -7,12 +7,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/applogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mui">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Medical" />
-        <activity android:name=".pay" />
-        <activity android:name=".ShowMedical"></activity>
+        <activity
+            android:name=".pay"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ShowMedical" />
+        <activity android:name=".mui" />
+        <activity android:name=".ShowVol" />
+        <activity android:name=".vol" />
+        <activity android:name=".MyHajj"></activity>
     </application>
 
 </manifest>

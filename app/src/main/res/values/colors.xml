@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+
+    <color name="White">#FFFFFF</color>
+    <color name="GhostWhite">#f8f8ff</color>
+    <color name="Black">#fefefe</color>
+    <color name="greeny">#1EB250</color>
+    <color name="buttoncolor">#516073</color>
+    <color name="redy">#ED2422</color>
+
+
+
+    <color name="background_color">#f8f8f8</color>
+    <color name="black">#303030</color>
 </resources>

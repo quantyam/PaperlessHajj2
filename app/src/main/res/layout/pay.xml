@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@drawable/grd1"
+    android:background="@drawable/grd1"
     android:orientation="vertical"
     tools:context=".pay">
 
@@ -17,37 +17,68 @@ android:background="@drawable/grd1"
             android:id="@+id/rm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
+            android:background="#59000000"
             android:ems="10"
+            android:hint="Amount"
             android:inputType="number|numberDecimal"
             android:text="10.0"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textColor="@android:color/white"
+            android:textSize="50sp" />
 
-        <Button
-            android:id="@+id/sqr"
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardElevation="4dp">
+
+            <SurfaceView
+                android:id="@+id/camera_view"
+                android:layout_width="match_parent"
+
+                android:layout_height="250dp"
+                android:layout_margin="15dp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Button" />
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="#719100"
+            app:cardElevation="7dp">
 
-        <SurfaceView
-            android:id="@+id/camera_view"
-            android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            android:layout_height="250dp"
-            android:layout_margin="15dp" />
+                <TextView
+                    android:id="@+id/entrpin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Enter Pin :"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:inputType="text|textPassword" />
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#59000000"
+                    android:ems="10"
+                    android:inputType="text|textPassword"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <Button
             android:id="@+id/submit"

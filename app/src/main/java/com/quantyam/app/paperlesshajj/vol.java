@@ -8,17 +8,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -31,7 +28,7 @@ import java.net.URL;
 import github.nisrulz.qreader.QRDataListener;
 import github.nisrulz.qreader.QREader;
 
-public class Medical extends AppCompatActivity {
+public class vol extends AppCompatActivity {
 
     private static final String cameraPerm = Manifest.permission.CAMERA;
 
@@ -58,10 +55,14 @@ public class Medical extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         //   text = findViewById(R.id.code_info);
+
+
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#94090D"));
+
+
         mySurfaceView = findViewById(R.id.camera_view);
 
 
@@ -71,12 +72,12 @@ public class Medical extends AppCompatActivity {
             // Setup QREader
             setupQREader();
         } else {
-            RuntimePermissionUtil.requestPermission(Medical.this, cameraPerm, 100);
+            RuntimePermissionUtil.requestPermission(vol.this, cameraPerm, 100);
         }
     }
 
     void restartActivity() {
-        startActivity(new Intent(Medical.this, Medical.class));
+        startActivity(new Intent(vol.this, vol.class));
         finish();
     }
 
@@ -98,7 +99,7 @@ public class Medical extends AppCompatActivity {
                     public void run() {
                         qrEader.stop();
 
-                        Intent intent = new Intent(getBaseContext(), ShowMedical.class);
+                        Intent intent = new Intent(getBaseContext(), ShowVol.class);
                         intent.putExtra("code", qrcode);
                         startActivity(intent);
 
@@ -146,7 +147,7 @@ public class Medical extends AppCompatActivity {
             RuntimePermissionUtil.onRequestPermissionsResult(grantResults, new RPResultListener() {
                 @Override
                 public void onPermissionGranted() {
-                    if ( RuntimePermissionUtil.checkPermissonGranted(Medical.this, cameraPerm)) {
+                    if ( RuntimePermissionUtil.checkPermissonGranted(vol.this, cameraPerm)) {
                         restartActivity();
                     }
                 }
@@ -174,7 +175,7 @@ public class Medical extends AppCompatActivity {
         @Override
         protected void onPreExecute( ) {
 
-            dialog = ProgressDialog.show(Medical.this, null, null, false, false);
+            dialog = ProgressDialog.show(vol.this, null, null, false, false);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(R.layout.progbar);
         }
@@ -271,7 +272,7 @@ dp( CampainName ,        name ,        nationalityD ,        Residence ,        
                 }
 
             }else{
-                ShowMes("Code not Found", Medical.this);
+                ShowMes("Code not Found", vol.this);
             }
             runOnUiThread(new Runnable() {
                 public void run() {

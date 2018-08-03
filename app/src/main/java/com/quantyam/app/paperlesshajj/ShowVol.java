@@ -1,6 +1,5 @@
 package com.quantyam.app.paperlesshajj;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -9,11 +8,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,10 +27,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import github.nisrulz.qreader.QREader;
-
-public class ShowMedical extends AppCompatActivity {
-    TextView medecalrecord, namef, nathonality, id, age, lang, recidance, phone, leader, companyf, camp, phone2, mail, trans;
+public class ShowVol extends AppCompatActivity {
+    TextView  namef, nathonality,   lang, recidance,   companyf, camp;  ;
 
     // UI
     private TextView text;
@@ -63,11 +58,11 @@ public class ShowMedical extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#B58B5A"));
+
 navigate=findViewById(R.id.nav);
 
 
@@ -75,18 +70,13 @@ navigate=findViewById(R.id.nav);
 
         namef = findViewById(R.id.Nametxt);
         nathonality = findViewById(R.id.nath);
-        id = findViewById(R.id.idtxt);
-        age = findViewById(R.id.Dob);
+
         lang = findViewById(R.id.lang);
         recidance = findViewById(R.id.recdtxt);
-        phone = findViewById(R.id.phone);
-        leader = findViewById(R.id.lead);
+
         companyf = findViewById(R.id.company);
         camp = findViewById(R.id.camp);
-        phone2 = findViewById(R.id.phone2);
-        mail = findViewById(R.id.mail);
-        trans = findViewById(R.id.trans);
-        medecalrecord = findViewById(R.id.medecalrecord);
+
 
         qrcode = getIntent().getStringExtra("code");
         new getnfo().execute();
@@ -106,7 +96,7 @@ navigate=findViewById(R.id.nav);
         @Override
         protected void onPreExecute() {
 
-            dialog = ProgressDialog.show(ShowMedical.this, null, null, false, false);
+            dialog = ProgressDialog.show(ShowVol.this, null, null, false, false);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(R.layout.progbar);
         }
@@ -191,19 +181,13 @@ navigate=findViewById(R.id.nav);
 
                     namef.setText(name);
                     nathonality.setText(Nationality);
-                    id.setText(nationalityD);
-                    age.setText(dob);
+
                     lang.setText(SpaekingLanguage);
                     recidance.setText(Residence);
-                    phone.setText(PhoneNumber);
-                    leader.setText(Leader);
-                    camp.setText(CampainName);
-                    mail.setText(Email);
-                    phone2.setText(RelativePhoneNo);
-                    trans.setText(Transportation);
-                    companyf.setText(company);
-                    medecalrecord.setText(MedicalRecord);
 
+                    camp.setText(CampainName);
+
+                    companyf.setText(company);
 
                     navigate.setOnClickListener(new View.OnClickListener() {
 
@@ -231,7 +215,7 @@ navigate=findViewById(R.id.nav);
                 }
 
             } else {
-                ShowMes("Code not Found", ShowMedical.this);
+                ShowMes("Code not Found", ShowVol.this);
             }
             runOnUiThread(new Runnable() {
                 public void run() {
