@@ -58,7 +58,7 @@ public class ShowMedical extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_vol);
+        setContentView(R.layout.activity_show_medical);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();

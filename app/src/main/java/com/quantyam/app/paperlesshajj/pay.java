@@ -39,7 +39,7 @@ public class pay extends AppCompatActivity {
     private TextView text;
 
     // QREader
-    ProgressDialog dialog;
+   ProgressDialog dialog;
 
 
     double req_value = 0.0;
@@ -209,9 +209,7 @@ TextView entrpin;
         @Override
         protected void onPreExecute() {
 
-            dialog = ProgressDialog.show(com.quantyam.app.paperlesshajj.pay.this, null, null, false, false);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.setContentView(R.layout.progbar);
+
         }
 
         public void pr(String s) {
@@ -265,7 +263,7 @@ TextView entrpin;
 
         protected void onPostExecute(String result) {
             String jsonStr = result;
-dialog.dismiss();
+
             Log.d("output", "JSON IS ====================" + jsonStr + "======");
 
             if (!jsonStr.equals("invalid")) {
@@ -273,10 +271,10 @@ dialog.dismiss();
                 pass.setVisibility(View.VISIBLE);
                 stateBtn.setVisibility(View.VISIBLE);
                 entrpin.setVisibility(View.VISIBLE);
-                dialog.dismiss();
+
 
             } else {
-                dialog.dismiss();
+
                 ShowMes("Hajj doesn't exist",pay.this);
                 onRestart();
             }
@@ -371,6 +369,7 @@ dialog.dismiss();
                     if (currentver > moneyneeded) {
 
                         Log.d("output", "good cash");
+                        dialog.dismiss();
                         new dopay(moneyneeded, CampainName, hajjid).execute();
                     } else {
 
@@ -413,7 +412,9 @@ dialog.dismiss();
 
         @Override
         protected void onPreExecute() {
-
+            dialog = ProgressDialog.show(com.quantyam.app.paperlesshajj.pay.this, null, null, false, false);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(R.layout.progbar);
 
         }
 
@@ -463,7 +464,7 @@ dialog.dismiss();
                         public void run() {
 
                             ShowMes("Payment Successful!", com.quantyam.app.paperlesshajj.pay.this);
-                            dialog.dismiss();
+
                         }
                     });
 
@@ -473,7 +474,7 @@ dialog.dismiss();
                         public void run() {
 
                             ShowMes("Error Occurred", com.quantyam.app.paperlesshajj.pay.this);
-                            dialog.dismiss();
+
                         }
                     });
 
@@ -489,7 +490,7 @@ dialog.dismiss();
 
 
         protected void onPostExecute(Integer result) {
-
+dialog.dismiss();
 
         }
     }

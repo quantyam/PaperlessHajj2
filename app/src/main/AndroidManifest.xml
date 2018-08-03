@@ -26,7 +26,9 @@
         <activity android:name=".mui" />
         <activity android:name=".ShowVol" />
         <activity android:name=".vol" />
-        <activity android:name=".MyHajj"></activity>
+        <activity android:name=".MyHajj" />
+        <activity android:name=".mybalance"></activity>
+        <activity android:name=".scanforbalance"></activity>
     </application>
 
 </manifest>

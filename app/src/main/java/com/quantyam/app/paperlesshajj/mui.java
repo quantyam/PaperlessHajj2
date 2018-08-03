@@ -93,5 +93,22 @@ public class mui extends AppCompatActivity {
             }
         });
 
+
+        CardView myblnc = findViewById(R.id.mybalance);
+        myblnc.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(mui.this, scanforbalance.class);
+
+                intent.putExtra("userid", id);
+                startActivity(intent);
+
+
+            }
+        });
+
     }
 }
